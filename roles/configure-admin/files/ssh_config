@@ -1,0 +1,17 @@
+Host swarm-manager
+  Hostname swarm-manager
+  User mgmt
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+ 
+Host worker1
+  Hostname worker1
+  User mgmt
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+ 
+Host worker2
+  Hostname worker2
+  User mgmt
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null

@@ -1,0 +1,13 @@
+---
+- name: Copy Publick Key to Other Hosts
+  become: true
+  become_user: mgmt
+  copy:
+    src: /home/mgmt/.ssh/id_rsa.pub
+    dest: /home/mgmt/.ssh/id_rsa.pub
+    mode: 0644
+- name: Append Public key in authorized_keys file
+  authorized_key:
+    user: mgmt
+    state: present
+    key: "{{ lookup('file', '/home/mgmt/.ssh/id_rsa.pub') }}"

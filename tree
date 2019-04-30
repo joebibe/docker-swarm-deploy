@@ -1,0 +1,41 @@
+.
+├── delete-swarm.yml
+├── deploy-swarm.retry
+├── deploy-swarm.yml
+├── inventory.ini
+└── roles
+    ├── configure-admin
+    │   ├── files
+    │   │   └── ssh_config
+    │   └── tasks
+    │       └── main.yml
+    ├── configure-hosts-file
+    │   └── tasks
+    │       └── main.yml
+    ├── copy-keys
+    │   └── tasks
+    │       └── main.yml
+    ├── create-sudo-user
+    │   ├── files
+    │   │   └── sudoers
+    │   └── tasks
+    │       └── main.yml
+    ├── docker-installation
+    │   └── tasks
+    │       └── main.yml
+    ├── docker-swarm-add-manager
+    │   └── tasks
+    │       └── main.yml
+    ├── docker-swarm-add-worker
+    │   └── tasks
+    │       └── main.yml
+    ├── docker-swarm-init
+    │   └── tasks
+    │       └── main.yml
+    ├── docker-swarm-leave
+    │   └── tasks
+    │       └── main.yml
+    └── install-modules
+        └── tasks
+            └── main.yml
+

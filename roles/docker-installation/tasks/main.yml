@@ -1,0 +1,44 @@
+---
+- name: uninstall legacy packages
+  package:
+     name:
+      - lxc-docker
+      - docker-engine
+      - docker.io
+     state: absent 
+  tags:
+    - docker
+    - apt_purge
+
+- name: Install Docker Dependencies
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    - python-pip 
+  tags: docker
+
+- name: Get Docker key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+  tags: docker
+
+- name: Ddd Docker packages to Repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_lsb.codename|lower }} stable
+  tags: docker
+
+- name: create docker folder
+  file:
+    path: "/etc/docker"
+    state: directory
+    mode: 0755
+  become: true
+
+- name: Install Docker-CE
+  apt: name="docker-ce" state=latest update_cache=yes
+  tags: docker
