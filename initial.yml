@@ -1,0 +1,16 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: create the 'mgmt' user
+      user: name=mgmt append=yes state=present createhome=yes shell=/bin/bash
+
+    - name: allow 'mgmt' to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        line: 'mgmt ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+    - name: set up authorized keys for the mgmt user
+      authorized_key: user=mgmt key="{{item}}"
+      with_file:
+        - ~/.ssh/id_rsa.pub
